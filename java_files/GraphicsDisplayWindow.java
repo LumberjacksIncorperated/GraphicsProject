@@ -82,6 +82,7 @@ public class GraphicsDisplayWindow implements GraphicsDisplay
     private void setupFrameWithinWindow() {
         this.frameWithinWindow.getContentPane().add( this.glcanvas );
         this.frameWithinWindow.setSize( this.frameWithinWindow.getContentPane().getPreferredSize() );
+        this.frameWithinWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.frameWithinWindow.setVisible( true );
     }
     

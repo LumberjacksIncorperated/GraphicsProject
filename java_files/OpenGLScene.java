@@ -58,6 +58,14 @@ public class OpenGLScene implements Scene
         glut.glutSolidSphere(1, POLYGON_COUNT_FACTOR, POLYGON_COUNT_FACTOR);
         gl.glPopMatrix();
     }
+
+    public void drawRectangularPrism(Coordinate position, double width, double height, double depth, Colour colour) {
+        /* TODO */
+    }
+
+    public void drawTeapot(Coordinate position, double scale, Colour colour) {
+        /* TODO */
+    }
     
     private void glSetColour(Colour colour) {
         gl.glColor4d(colour.getRedComponent(), colour.getGreenComponent(), colour.getBlueComponent(), colour.getAlphaComponent());
