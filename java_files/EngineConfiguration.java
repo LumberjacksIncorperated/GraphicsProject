@@ -14,6 +14,7 @@
 // IMPORTS
 //-----------------------------------------------------------------------------------------------------------------------
 import java.awt.DisplayMode;
+
 import javax.media.opengl.GL2;
 import javax.media.opengl.GLAutoDrawable;
 import javax.media.opengl.GLCapabilities;
@@ -33,19 +34,11 @@ public class EngineConfiguration
 {	
     //private int framerateMaxFPS = 60;
     private ScenePainter scenePainter;
+    private GraphicsDisplay graphicsDisplay;
     private Coordinate viewPosition = new Coordinate(0,0,0);
     private Direction viewLookingTowardsDirection = new Direction(1,0,0);
-    private GraphicsDisplay graphicsDisplay;
     
-    public EngineConfiguration() {
-        this.scenePainter = new ScenePainter() {
-            public void paintScene(Scene scene) {}
-        };
-        this.graphicsDisplay = new GraphicsDisplay() {
-            public void receiveGLCapabilitiesFromEngine(GLCapabilities capabilities) {}
-            public void receiveGLEventListenerFromEngine(GLEventListener glEventListener) {}
-        };
-    }
+    public EngineConfiguration() { /* Nothing */ }
     
     public void setScenePainter(ScenePainter newScenePainter) {
         this.scenePainter = newScenePainter;

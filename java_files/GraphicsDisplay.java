@@ -14,6 +14,7 @@
 // IMPORTS
 //-----------------------------------------------------------------------------------------------------------------------
 import java.awt.DisplayMode;
+
 import javax.media.opengl.GL2;
 import javax.media.opengl.GLAutoDrawable;
 import javax.media.opengl.GLCapabilities;

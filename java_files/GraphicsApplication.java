@@ -1,4 +1,3 @@
-
 //-----------------------------------------------------------------------------------------------------------------------
 //
 // PROJECT
@@ -28,33 +27,45 @@ public class GraphicsApplication
     
     private GraphicsDisplayWindow graphicsDisplayWindow;
     private GraphicsEngine graphicsEngine;
-    private ControlInput controlInput;
+    private ControlInputListener controlInputListener;
     
     public GraphicsApplication() {}
     
     public void run() {
+        setupDisplay();
+        setupEngine();
+        setupViewController();
+    }
+
+    private void setupDisplay() {
         graphicsDisplayWindow = GraphicsDisplayWindow.createNewGraphicsDisplayWindow();
+    }
+
+    private void setupEngine() {
         GraphicsDisplay graphicsDisplay = graphicsDisplayWindow.getGraphicsDisplay();
-        
-        EngineConfiguration initialEngineConfiguration = GraphicsApplication.engineInitialConfigurationWithDisplay(graphicsDisplay);
+        EngineConfiguration initialEngineConfiguration = createEngineInitialConfigurationWithDisplay(graphicsDisplay);
         graphicsEngine = GraphicsEngine.startEngineWithConfiguration(initialEngineConfiguration);
-        
-        GraphicsViewportController graphicsViewportController = GraphicsViewportController.newViewportControllerWithEngine(graphicsEngine);
-        controlInput = ControlInput.startListeningToInputWithWindowAndListener(graphicsDisplayWindow, graphicsViewportController);
-        
+    }
+
+    private void setupViewController() {
+        GraphicsViewportController graphicsViewportController = GraphicsViewportController.newViewportControllerWithEngine(this.graphicsEngine);
+        controlInputListener = ControlInputListener.createControlInputListenerWithDelegate(graphicsViewportController);
+        graphicsDisplayWindow.addKeyListener(this.controlInputListener);
         graphicsDisplayWindow.showWindow();
     }
     
-    private static EngineConfiguration engineInitialConfigurationWithDisplay(GraphicsDisplay graphicsDisplay) {
+    private EngineConfiguration createEngineInitialConfigurationWithDisplay(GraphicsDisplay graphicsDisplay) {
         EngineConfiguration engineConfiguration = new EngineConfiguration();
-        
+        setEngineInitialConfigurationWithGraphicsDisplay(engineConfiguration, graphicsDisplay);        
+        return engineConfiguration;
+    }
+
+    private void setEngineInitialConfigurationWithGraphicsDisplay(EngineConfiguration engineConfiguration, GraphicsDisplay graphicsDisplay) {
         //engineConfiguration.setFramerateMaxFPS(60);
         engineConfiguration.setViewPosition(new Coordinate(-1,0,0));
         engineConfiguration.setViewPosition(new Coordinate(-1,0,2));
         engineConfiguration.setViewLookingTowardsDirection(new Direction(1,0,0));
         engineConfiguration.setGraphicsDisplay(graphicsDisplay);
         engineConfiguration.setScenePainter(new TestScenePainter());
-        
-        return engineConfiguration;
     }
 }

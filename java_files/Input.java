@@ -25,7 +25,7 @@ public class Input
 {
     private KeyEvent keyEvent;
     
-    private Input() {}
+    private Input() { /* Nothing */ }
     
     public boolean isKeyCorrespondingToCharater(char character) {
         return (this.keyEvent.getKeyChar() == character);

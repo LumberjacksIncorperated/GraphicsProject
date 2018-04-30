@@ -14,6 +14,7 @@
 // IMPORTS
 //-----------------------------------------------------------------------------------------------------------------------
 import java.awt.DisplayMode;
+
 import javax.media.opengl.GL2;
 import javax.media.opengl.GLAutoDrawable;
 import javax.media.opengl.GLCapabilities;
@@ -38,6 +39,7 @@ public class GraphicsDisplayWindow implements GraphicsDisplay
     private JFrame frameWithinWindow;
     private GLCapabilities glCapabilities;
     private GLEventListener glEventListener;
+    private GLCanvas glcanvas;
     
     private final String WINDOW_NAME = "Dave Is Dave";
     private GraphicsDisplayWindow() {
@@ -62,22 +64,30 @@ public class GraphicsDisplayWindow implements GraphicsDisplay
     public void receiveGLEventListenerFromEngine(GLEventListener glEventListener) {
         this.glEventListener = glEventListener;
     }
-    
+
+    public void showWindow() {
+        createCanvasWithListenerAndCapabilities();
+        setupFrameWithinWindow();
+        startWindowAnimator();
+    }
+
     private int WINDOW_WIDTH = 400;
     private int WINDOW_HEIGHT = 400;
+    private void createCanvasWithListenerAndCapabilities() {
+        this.glcanvas = new GLCanvas( this.glCapabilities );
+        this.glcanvas.addGLEventListener( this.glEventListener );
+        this.glcanvas.setSize( WINDOW_WIDTH, WINDOW_HEIGHT );
+    }
+
+    private void setupFrameWithinWindow() {
+        this.frameWithinWindow.getContentPane().add( this.glcanvas );
+        this.frameWithinWindow.setSize( this.frameWithinWindow.getContentPane().getPreferredSize() );
+        this.frameWithinWindow.setVisible( true );
+    }
+    
     private int FRAMES_PER_SECOND = 300;
-    public void showWindow() {
-        final GLCanvas glcanvas = new GLCanvas( this.glCapabilities );
-        
-        glcanvas.addGLEventListener( this.glEventListener );
-        glcanvas.setSize( WINDOW_WIDTH, WINDOW_HEIGHT );
-        
-        frameWithinWindow.getContentPane().add( glcanvas );
-        frameWithinWindow.setSize( frameWithinWindow.getContentPane().getPreferredSize() );
-        frameWithinWindow.setVisible( true );
-        
-        final FPSAnimator animator = new FPSAnimator(glcanvas, FRAMES_PER_SECOND, true);
-        
+    private void startWindowAnimator() {
+        FPSAnimator animator = new FPSAnimator(this.glcanvas, FRAMES_PER_SECOND, true);
         animator.start();
     }
 }

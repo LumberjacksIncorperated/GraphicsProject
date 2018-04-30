@@ -18,7 +18,7 @@
 //-----------------------------------------------------------------------------------------------------------------------
 // CLASS
 //-----------------------------------------------------------------------------------------------------------------------
-public class GraphicsViewportController implements ControlInputListener
+public class GraphicsViewportController implements ControlInputDelegate
 {
     private final GraphicsEngine graphicsEngine;
     
@@ -60,7 +60,7 @@ public class GraphicsViewportController implements ControlInputListener
         if (input.isKeyCorrespondingToCharater(ROTATE_RIGHT_CHARACTER)) {
             this.rotateViewportRightByAmount(MOVEMENT_RATATIONAL_OFFSET);
         }
-        else {}
+        else { /* Nothing */ }
     }
     
     private GraphicsViewportController(GraphicsEngine graphicsEngine) {

@@ -16,15 +16,9 @@
 // <NONE>
 
 //-----------------------------------------------------------------------------------------------------------------------
-// CLASS
+// INTERFACE
 //-----------------------------------------------------------------------------------------------------------------------
-public class TestScenePainter implements ScenePainter
+public interface ControlInputDelegate
 {
-    public TestScenePainter() { /* Nothing */ }
-    
-    public void paintScene(Scene scene) {
-        double sphereRadius = 0.4;
-        Coordinate spherePosition = new Coordinate(0,0,0);
-        scene.drawSphere(spherePosition, sphereRadius, Colour.createRedColour());
-    }
+    public void receivedControlInput(Input input);
 }

@@ -13,12 +13,33 @@
 //-----------------------------------------------------------------------------------------------------------------------
 // IMPORTS
 //-----------------------------------------------------------------------------------------------------------------------
-// <NONE>
+import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+
+import javax.swing.JFrame;
 
 //-----------------------------------------------------------------------------------------------------------------------
-// INTERFACE
+// CLASS
 //-----------------------------------------------------------------------------------------------------------------------
-public interface ControlInputListener
+public class ControlInputListener implements KeyListener
 {
-    public void receivedControlInput(Input input);
+    private ControlInputDelegate controlInputDelegate;
+    
+    private ControlInputListener(ControlInputDelegate controlInputDelegate) {
+        this.controlInputDelegate = controlInputDelegate;
+    }
+    
+    public static ControlInputListener createControlInputListenerWithDelegate(ControlInputDelegate controlInputDelegate) {
+        ControlInputListener newControlInputListener = new ControlInputListener(controlInputDelegate);
+        return newControlInputListener;
+    }
+    
+    /* Key Event Functions */
+    public void keyPressed(KeyEvent keyEvent) {
+        Input receivedInput = Input.inputWithKeyPressedKeyEvent(keyEvent);
+        this.controlInputDelegate.receivedControlInput(receivedInput);
+    }
+    public void keyReleased(KeyEvent keyEvent) { /* Nothing */ }
+    public void keyTyped(KeyEvent keyEvent) { /* Nothing */ }
 }

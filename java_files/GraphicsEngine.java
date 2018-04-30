@@ -37,7 +37,7 @@ public class GraphicsEngine implements GLEventListener
     }
     
     private final EngineConfiguration engineConfiguration;
-    private GLU graphicsLibraryUtility = new GLU();
+    private final GLU graphicsLibraryUtility = new GLU();
     private EngineRunningState engineRunningState = EngineRunningState.NOT_RUNNING;
     
     public static GraphicsEngine startEngineWithConfiguration(EngineConfiguration initialEngineConfiguration) {
@@ -53,13 +53,17 @@ public class GraphicsEngine implements GLEventListener
     
     private GraphicsEngine(EngineConfiguration initialEngineConfiguration) {
         this.engineConfiguration = initialEngineConfiguration;
-        
+        setupGlInternalConfiguration();
+    }
+
+    private void setupGlInternalConfiguration() {
         final GLProfile glProfile = GLProfile.get( GLProfile.GL2 );
         GLCapabilities glCapabilities = new GLCapabilities( glProfile );
+        
         GraphicsDisplay graphicsDisplay = this.engineConfiguration.getGraphicsDisplay();
+        
         graphicsDisplay.receiveGLCapabilitiesFromEngine(glCapabilities);
         graphicsDisplay.receiveGLEventListenerFromEngine(this);
-        
     }
     
     private void startEngine() {
@@ -68,7 +72,8 @@ public class GraphicsEngine implements GLEventListener
     }
     
     private void paintScene(Scene scene) {
-        this.engineConfiguration.getScenePainter().paintScene(scene);
+        ScenePainter scenePainter = this.engineConfiguration.getScenePainter();
+        scenePainter.paintScene(scene);
     }
     
     public Coordinate getViewPosition() {
