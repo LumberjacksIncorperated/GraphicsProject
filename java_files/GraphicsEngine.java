@@ -55,7 +55,7 @@ public class GraphicsEngine implements GLEventListener
         this.engineConfiguration = initialEngineConfiguration;
         setupGlInternalConfiguration();
     }
-
+    
     private void setupGlInternalConfiguration() {
         final GLProfile glProfile = GLProfile.get( GLProfile.GL2 );
         GLCapabilities glCapabilities = new GLCapabilities( glProfile );

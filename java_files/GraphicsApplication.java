@@ -36,17 +36,17 @@ public class GraphicsApplication
         setupEngine();
         setupViewController();
     }
-
+    
     private void setupDisplay() {
         graphicsDisplayWindow = GraphicsDisplayWindow.createNewGraphicsDisplayWindow();
     }
-
+    
     private void setupEngine() {
         GraphicsDisplay graphicsDisplay = graphicsDisplayWindow.getGraphicsDisplay();
         EngineConfiguration initialEngineConfiguration = createEngineInitialConfigurationWithDisplay(graphicsDisplay);
         graphicsEngine = GraphicsEngine.startEngineWithConfiguration(initialEngineConfiguration);
     }
-
+    
     private void setupViewController() {
         GraphicsViewportController graphicsViewportController = GraphicsViewportController.newViewportControllerWithEngine(this.graphicsEngine);
         controlInputListener = ControlInputListener.createControlInputListenerWithDelegate(graphicsViewportController);
@@ -56,10 +56,10 @@ public class GraphicsApplication
     
     private EngineConfiguration createEngineInitialConfigurationWithDisplay(GraphicsDisplay graphicsDisplay) {
         EngineConfiguration engineConfiguration = new EngineConfiguration();
-        setEngineInitialConfigurationWithGraphicsDisplay(engineConfiguration, graphicsDisplay);        
+        setEngineInitialConfigurationWithGraphicsDisplay(engineConfiguration, graphicsDisplay);
         return engineConfiguration;
     }
-
+    
     private void setEngineInitialConfigurationWithGraphicsDisplay(EngineConfiguration engineConfiguration, GraphicsDisplay graphicsDisplay) {
         //engineConfiguration.setFramerateMaxFPS(60);
         engineConfiguration.setViewPosition(new Coordinate(-1,0,0));

@@ -64,13 +64,13 @@ public class GraphicsDisplayWindow implements GraphicsDisplay
     public void receiveGLEventListenerFromEngine(GLEventListener glEventListener) {
         this.glEventListener = glEventListener;
     }
-
+    
     public void showWindow() {
         createCanvasWithListenerAndCapabilities();
         setupFrameWithinWindow();
         startWindowAnimator();
     }
-
+    
     private int WINDOW_WIDTH = 400;
     private int WINDOW_HEIGHT = 400;
     private void createCanvasWithListenerAndCapabilities() {
@@ -78,7 +78,7 @@ public class GraphicsDisplayWindow implements GraphicsDisplay
         this.glcanvas.addGLEventListener( this.glEventListener );
         this.glcanvas.setSize( WINDOW_WIDTH, WINDOW_HEIGHT );
     }
-
+    
     private void setupFrameWithinWindow() {
         this.frameWithinWindow.getContentPane().add( this.glcanvas );
         this.frameWithinWindow.setSize( this.frameWithinWindow.getContentPane().getPreferredSize() );
