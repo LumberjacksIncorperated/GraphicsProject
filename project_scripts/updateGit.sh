@@ -40,7 +40,7 @@ function udpateLocalGit()
 
 function updateRemoteGit()
 {
-    git push remote origin
+    git push origin master
 }
 
 #----------------------------------------------------------------------------------------------------------------------
