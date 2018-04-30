@@ -1,1 +1,0 @@
-javac -classpath "lib/jogamp-all-platforms/jar/gluegen-rt.jar:lib/jogamp-all-platforms/jar/jogl-all.jar" *.java

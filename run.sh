@@ -1,1 +1,0 @@
-java -cp "lib/jogamp-all-platforms/jar/gluegen-rt.jar:lib/jogamp-all-platforms/jar/jogl-all.jar:." -Djava.library.path="lib/jogamp-all-platforms/lib" GraphicsApplication
