@@ -10,7 +10,7 @@ git clone https://github.com/LumberjacksIncorperated/GraphicsProject.git
 
 ### Running
 
-You have 3 options after the project has been installed:
+You have 4 options after the project has been installed:
 
 ```
 # Option 1 : Compile the project
@@ -24,6 +24,10 @@ cd ../project_scripts
 # Option 3 : Compile and run the project
 cd ../project_scripts
 ./compileAndRun.sh
+
+# Option 4: Update to git and push to Github
+cd ../project_scripts
+./updateGit.sh
 ```
 
 
